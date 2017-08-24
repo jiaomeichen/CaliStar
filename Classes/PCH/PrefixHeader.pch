@@ -1,0 +1,132 @@
+//
+//  PrefixHeader.pch
+//  CaliStar
+//
+//  Created by user on 2017/8/21.
+//  Copyright © 2017年 开利星空电子商务有限公司. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+#import <AFNetworking.h>
+#import <MJExtension.h>
+#import "UIView+Frame.h"
+#import "Const.h"
+#define RootV [UIApplication sharedApplication].keyWindow.rootViewController.view
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+//适配
+#define ScreenWidth  [UIScreen mainScreen].bounds.size.width
+#define ScreenHeight  [UIScreen mainScreen].bounds.size.height
+#define adoptValue(a) (a*(ScreenWidth/320.0))
+
+//颜色
+#define kMainColor [UIColor colorWithRed:(24)/255.0 green:(177)/255.0 blue:(190)/255.0 alpha:1.0]
+#define kNavColor [UIColor colorWithRed:(43)/255.0 green:(90)/255.0 blue:(113)/255.0 alpha:1.0]
+#define kBgColor [UIColor colorWithRed:(244)/255.0 green:(248)/255.0 blue:(249)/255.0 alpha:1.0]
+#define HWColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+
+
+#define Max_OffsetY  50
+#define  Statur_HEIGHT   [[UIApplication sharedApplication] statusBarFrame].size.height
+#define  NAVIBAR_HEIGHT  (self.navigationController.navigationBar.frame.size.height)
+
+#define  INVALID_VIEW_HEIGHT (Statur_HEIGHT + NAVIBAR_HEIGHT)
+#define HalfF(x) ((x)/2.0f)
+#define WeakSelf(x)      __weak typeof (self) x = self
+/**
+ *  判断当前设备是否是iOS7
+ */
+#define iOS7 [[[UIDevice currentDevice]systemVersion] floatValue] >= 7.0
+
+/**
+ *  判断当前设备是否是iOS8
+ */
+#define iOS8 [[[UIDevice currentDevice]systemVersion] floatValue] >= 8.0
+
+/**
+ *  判断当前设备是否是iOS9
+ */
+#define iOS9 [[[UIDevice currentDevice]systemVersion] floatValue] >= 9.0
+
+
+#define Login [[NSUserDefaults standardUserDefaults] boolForKey:@"Login"]
+/**
+ *  警告提示框
+ */
+#define Alert(msg) [[[UIAlertView alloc]initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+
+
+//以6 Plus为标准
+//屏幕适配
+#define DP_SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+
+//#define adoptValue(a) (a*(DP_SCREEN_WIDTH/414.0))
+
+// MainScreen Height&Width#define myx [UIScreen mainScreen].bounds.size.width/375.0
+#define myy [UIScreen mainScreen].bounds.size.height/667.0
+
+#define myRect(x,y,xx,yy) CGRectMake([UIScreen mainScreen].bounds.size.width/375*x, [UIScreen mainScreen].bounds.size.height/667*y, [UIScreen mainScreen].bounds.size.width/375*xx,[UIScreen mainScreen].bounds.size.height/667*yy)
+
+//#define cellgao (96/667*[UIScreen mainScreen].bounds.size.height)
+
+
+// View 坐标(x,y)和宽高(width,height)
+#define X(v)                    (v).frame.origin.x
+#define Y(v)                    (v).frame.origin.y
+#define WIDTH(v)                (v).frame.size.width
+#define HEIGHT(v)               (v).frame.size.height
+
+#define MinX(v)                 CGRectGetMinX((v).frame)
+#define MinY(v)                 CGRectGetMinY((v).frame)
+
+#define MidX(v)                 CGRectGetMidX((v).frame)
+#define MidY(v)                 CGRectGetMidY((v).frame)
+
+#define MaxX(v)                 CGRectGetMaxX((v).frame)
+#define MaxY(v)                 CGRectGetMaxY((v).frame)
+
+//字体适配
+#define MYFontSize10 ((10.0)*(ScreenWidth/375.0))
+#define MYFontSize11 ((11.0)*(ScreenWidth/375.0))
+#define MYFontSize12 ((12.0)*(ScreenWidth/375.0))
+#define MYFontSize  ((12.0) * (ScreenWidth / 375.0))
+#define MyNavTitleSize ((15.0) * (ScreenWidth / 375.0))
+#define MyFontSize14 ((14.0)*(ScreenWidth /375))
+#define MyFontSize13 ((13.0)*(ScreenWidth /375))
+#define MyFontSize16 ((16.0)*(ScreenWidth /375))
+#define MyFontSize17 ((17.0)*(ScreenWidth /375))
+#define MyFontSize44 ((44.0)*(ScreenWidth /375))
+#define MyFontSize25 ((25.0)*(KScreenWidth /375))
+#define WeakSelf __weak typeof(self) weakSelf = self;
+//短信验证
+#define URL_Yan @"http://60.205.171.1/huitaocar/v1/myhtc/sms/SendTemplateSMS.php"
+//注册
+#define URL_Register @"http://60.205.171.1/huitaocar/v1/myhtc/handles/register.php"
+//登录
+#define URL_Login @"https://www.calistar.com.cn/wp-login.php"
+#define URL_Login2 @"http://192.168.1.215:8080/wp-login.php?redirect_to=http://192.168.1.215/wp-content/themes/calistar/app/login.php&reauth=1"
+
+#define URL_Login1 @"http://192.168.1.215/wp-content/themes/calistar/app/login.php"
+//图标
+#define URL_Logo @"http://60.205.171.1/huitaocar/v1/myhtc/handles/getbrand.php"
+//商品信息
+#define URL_Info @"http://60.205.171.1/huitaocar/v1/myhtc/handles/getproduct.php"
+//短信验证码
+#define URL_code @"http://60.205.171.1/huitaocar/v1/myhtc/handles/SendTemplateSMS.php"
+
+//用户验证码
+#define user_code @"code"
+//
+
+//调试状态打印
+#ifndef YYLog
+#if DEBUG
+# define YYLog(fmt, ...) NSLog((@"%s [Line %d] " fmt),__PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#define YYLog(fmt, ...)
+#endif
+#endif
+
+
+#endif /* PrefixHeader_pch */
